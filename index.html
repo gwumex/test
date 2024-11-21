@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eruda Debug Console</title>
+  <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 50px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      margin: 10px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>Eruda Debug Console Demo</h1>
+  <button id="toggleEruda">Activate Debug Console</button>
+
+  <script>
+    let erudaActive = false;
+
+    document.getElementById('toggleEruda').addEventListener('click', () => {
+      if (!erudaActive) {
+        // Activate Eruda
+        eruda.init();
+        document.getElementById('toggleEruda').textContent = 'Deactivate Debug Console';
+        console.log('Eruda activated');
+      } else {
+        // Deactivate Eruda (manually remove its DOM element)
+        const erudaContainer = document.getElementById('eruda');
+        if (erudaContainer) erudaContainer.remove();
+        document.getElementById('toggleEruda').textContent = 'Activate Debug Console';
+        console.log('Eruda deactivated');
+      }
+      erudaActive = !erudaActive;
+    });
+  </script>
+</body>
+</html>
